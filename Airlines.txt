@@ -1,0 +1,68 @@
+
+%cd C:\Users\xyz
+
+# Import required Lib
+import statsmodels.formula.api as smf
+from statsmodels.stats.anova import anova_lm
+from statsmodels.graphics.gofplots import qqplot
+import pandas as pd
+
+
+airlines = pd.read_csv ("Airlines.csv")
+airlines.info()
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+ax.scatter ('ArrDelay', 'DepDelay', data=airlines, c='b', marker='o', s=40)
+ax.set_xlabel ('Delay in Arrival (minutes)')
+ax.set_ylabel ('Delay in Departure (minutes)')
+ax.set_title ('Departure Delay versus Arrival Delay')
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+ax.scatter ('Distance', 'DepDelay', data=airlines, c='b', marker='o', s=40)
+ax.set_xlabel ('Distance covered during the Flight (miles)')
+ax.set_ylabel ('Delay in Departure (minutes)')
+ax.set_title ('Departure Delay versus Flight Distance')
+
+
+model = smf.ols ('DepDelay ~ ArrDelay + Distance', data=airlines)
+results = model.fit()
+print results.summary()
+
+airlines ['EstDepDelay'] = results.predict()
+airlines.info()
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+qqplot (results.resid, ax=ax)
+ax.set_xlabel ('Theoretical Quantiles from the Normal Distribution')
+ax.set_ylabel ('Sample Quantiles of Residuals')
+ax.set_title ('Normal Quantile-Quantile Plot of Residuals')
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+ax.scatter ('EstDepDelay', results.resid, data=airlines, c='b', marker='o', s=40)
+ax.set_xlabel ('Estimated Delay in Departure (minutes)')
+ax.set_ylabel ('Residuals')
+ax.set_title ('Residuals versus Estimated Departure Delay')
+
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+ax.scatter ('ArrDelay', results.resid, data=airlines, c='b', marker='o', s=40)
+ax.set_xlabel ('Delay in Arrival (minutes)')
+ax.set_ylabel ('Residuals')
+ax.set_title ('Residuals versus Arrival Delay')
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+ax.scatter ('Distance', results.resid, data=airlines, c='b', marker='o', s=40)
+ax.set_xlabel ('Distance covered during the Flight (miles)')
+ax.set_ylabel ('Residuals')
+ax.set_title ('Residuals versus Flight Distance')
+
+fig = plt.figure()
+ax = fig.add_subplot (1,1,1)
+obs = arange (1, airlines ['DepDelay'].count()+1)
+ax.plot (obs, results.resid)
