@@ -1,4 +1,6 @@
-
+###
+[{'name': 'SAFEKEEPING ACCOUNT', 'values': [{'value': '1777-GCS', 'synonym': 'SAFEKEEPING ACCOUNT', 'Found_Index': 210}, {'value': '1999-GCS', 'synonym': 'SAFEKEEPING ACCOUNT', 'Found_Index': 1338}, {'value': '9888-GCS', 'synonym': 'SAFEKEEPING ACCOUNT', 'Found_Index': 1388}]}, {'name': 'SAFEKEEPING ACCOUNT', 'values': [{'value': '1777-GCS', 'synonym': 'ACCOUNT', 'Found_Index': 210}, {'value': '1999-GCS', 'synonym': 'ACCOUNT', 'Found_Index': 1338}, {'value': '4444-PCS', 'synonym': 'ACCOUNT', 'Found_Index': 1357}, {'value': '9888-GCS', 'synonym': 'ACCOUNT', 'Found_Index': 1388}]}, {'name': 'SAFEKEEPING ACCOUNT', 'values': [{'value': '1777-GCS', 'synonym': 'OUNT', 'Found_Index': 210}, {'value': '1999-GCS', 'synonym': 'OUNT', 'Found_Index': 1338}, {'value': '4444-PCS', 'synonym': 'OUNT', 'Found_Index': 1357}, {'value': '9888-GCS', 'synonym': 'OUNT', 'Found_Index': 1388}]}]
+###
 %cd C:\Users\xyz
 
 # Import required Lib
